@@ -1,70 +1,49 @@
 // ==========================================
-// SERVIDOR PRINCIPAL CON NODE.JS Y EXPRESS
+// SERVIDOR PRINCIPAL CON NODE.JS Y EXPRESS (MODULAR)
 // ==========================================
 
-// 1. Importación de dependencias
+// 1. Carga de variables de entorno
+require("dotenv").config();
+
+// 2. Importación de módulos y dependencias
 const express = require("express");
-const dotenv = require("dotenv");
+const path = require("path");
 
-// 2. Cargar las variables de entorno definidas en el archivo .env
-dotenv.config();
+// 3. Importación de middlewares personalizados y rutas modulares
+const requestLogger = require("./middlewares/logger");
+const appRoutes = require("./routes/app.routes");
 
-// 3. Crear la instancia de la aplicación Express
+// 4. Inicialización de la aplicación Express
 const app = express();
-
-// 4. Configurar el puerto de escucha (toma el valor de .env o 3000 por defecto)
 const PORT = process.env.PORT || 3000;
 
 // ==========================================
-// SECCIÓN DE MIDDLEWARES
+// SECCIÓN DE MIDDLEWARES GLOBALES
 // ==========================================
 
-// Middleware nativo para transformar las solicitudes con cuerpo JSON en objetos JavaScript
+// Parseo de cuerpos de solicitud en formato JSON
 app.use(express.json());
 
-// Middleware personalizado de registro (Logger): registra método, ruta y fecha de cada solicitud
-app.use((req, res, next) => {
-  const timestamp = new Date().toISOString();
-  console.log(`[${timestamp}] Método: ${req.method} | Ruta: ${req.url}`);
-  next(); // Pasa el control a la siguiente función o ruta
-});
+// Registro de peticiones y persistencia en archivo plano (logs/log.txt)
+app.use(requestLogger);
+
+// Servicio de archivos estáticos (sirve public/index.html en la raíz '/')
+app.use(express.static(path.join(__dirname, "public")));
 
 // ==========================================
-// SECCIÓN DE RUTAS / ENDPOINTS
+// SECCIÓN DE ENRUTAMIENTO MODULAR
 // ==========================================
 
-// Ruta raíz (GET /): Endpoint de bienvenida y comprobación de estado
-app.get("/", (req, res) => {
-  res.status(200).json({
-    ok: true,
-    mensaje: "Servidor Express ejecutándose correctamente",
-    version: "1.0.0",
-  });
-});
-
-// Ruta de usuarios (GET /api/usuarios): Endpoint de ejemplo con datos simulados
-app.get("/api/usuarios", (req, res) => {
-  const usuarios = [
-    { id: 1, nombre: "Ana López", rol: "Desarrolladora" },
-    { id: 2, nombre: "Carlos Soto", rol: "Diseñador UI/UX" },
-    { id: 3, nombre: "María Rojas", rol: "Project Manager" },
-  ];
-
-  res.status(200).json({
-    ok: true,
-    total: usuarios.length,
-    datos: usuarios,
-  });
-});
+// Conexión del router principal (/status, /api/usuarios)
+app.use("/", appRoutes);
 
 // ==========================================
-// ARRANQUE DEL SERVIDOR
+// ARRANQUE Y ESCUCHA DEL SERVIDOR
 // ==========================================
 
-// Iniciar el servidor y escuchar peticiones en el puerto configurado
 app.listen(PORT, () => {
-  console.log(`===============================================`);
+  console.log("===============================================");
   console.log(` Servidor activo y escuchando en: http://localhost:${PORT}`);
-  console.log(` Presiona Ctrl + C en la terminal para detenerlo`);
-  console.log(`===============================================`);
+  console.log(" Presiona Ctrl + C en la terminal para detenerlo");
+  console.log("===============================================");
 });

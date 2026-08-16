@@ -1,0 +1,8 @@
+[2026-08-16T03:19:46.476Z] Método: GET | Ruta: /
+[2026-08-16T03:19:51.681Z] Método: GET | Ruta: /status
+[2026-08-16T03:20:06.846Z] Método: GET | Ruta: /status
+[2026-08-16T03:20:24.718Z] Método: GET | Ruta: /api/usuarios
+[2026-08-16T03:20:54.922Z] Método: GET | Ruta: /
+[2026-08-16T03:25:35.889Z] Método: GET | Ruta: /
+[2026-08-16T03:25:47.536Z] Método: GET | Ruta: /status
+[15-08-2026, 11:36:36 p. m.] Método: GET | Ruta: /status
