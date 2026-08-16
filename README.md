@@ -16,6 +16,6 @@ Aplicación web backend construida con **Node.js** y **Express.js**, implementan
 
 1. **Clonar el repositorio:**
    ```bash
-   git clone <URL_DEL_REPOSITORIO>
+   git clone < https://github.com/davidcarrascocepeda-ship-it/node-express-app.git>
    cd node-express-app
    ```
