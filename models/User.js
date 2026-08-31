@@ -22,14 +22,19 @@ const User = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
+    avatar: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      defaultValue: null,
+    },
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
   },
   {
-    tableName: "usuarios", // Mapea a la tabla ya existente
-    timestamps: false, // Evita que Sequelize busque updatedAt automáticamente
+    tableName: "usuarios",
+    timestamps: false,
   },
 );
 
