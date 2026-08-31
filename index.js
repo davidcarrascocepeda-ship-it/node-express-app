@@ -8,6 +8,10 @@ require("dotenv").config();
 // 2. Importación de módulos y dependencias
 const express = require("express");
 const path = require("path");
+require("./config/db");
+
+// Importación de modelos y ORM
+const { sequelize } = require("./models");
 
 // 3. Importación de middlewares personalizados y rutas modulares
 const requestLogger = require("./middlewares/logger");
@@ -38,12 +42,22 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", appRoutes);
 
 // ==========================================
-// ARRANQUE Y ESCUCHA DEL SERVIDOR
+// SINCRONIZACIÓN ORM Y ARRANQUE DEL SERVIDOR
 // ==========================================
 
-app.listen(PORT, () => {
-  console.log("===============================================");
-  console.log(` Servidor activo y escuchando en: http://localhost:${PORT}`);
-  console.log(" Presiona Ctrl + C en la terminal para detenerlo");
-  console.log("===============================================");
-});
+// Sincroniza modelos con la base de datos (crea la tabla pedidos si no existe)
+sequelize
+  .sync()
+  .then(() => {
+    console.log(" Modelos de Sequelize sincronizados con la base de datos.");
+
+    app.listen(PORT, () => {
+      console.log("===============================================");
+      console.log(` Servidor activo y escuchando en: http://localhost:${PORT}`);
+      console.log(" Presiona Ctrl + C en la terminal para detenerlo");
+      console.log("===============================================");
+    });
+  })
+  .catch((error) => {
+    console.error(" Error al sincronizar con Sequelize:", error.message);
+  });

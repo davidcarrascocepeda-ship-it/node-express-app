@@ -6,3 +6,15 @@
 [2026-08-16T03:25:35.889Z] Método: GET | Ruta: /
 [2026-08-16T03:25:47.536Z] Método: GET | Ruta: /status
 [15-08-2026, 11:36:36 p. m.] Método: GET | Ruta: /status
+[31-08-2026, 1:17:29 a. m.] Método: GET | Ruta: /usuarios
+[31-08-2026, 1:21:05 a. m.] Método: GET | Ruta: /usuarios
+[31-08-2026, 1:41:53 a. m.] Método: PUT | Ruta: /usuarios/1
+[31-08-2026, 1:45:16 a. m.] Método: DELETE | Ruta: /usuarios/3
+[31-08-2026, 3:01:27 a. m.] Método: POST | Ruta: /usuarios/registro-completo
+[31-08-2026, 3:07:27 a. m.] Método: POST | Ruta: /usuarios/registro-completo
+[31-08-2026, 3:09:57 a. m.] Método: POST | Ruta: /usuarios/registro-completo
+[31-08-2026, 3:38:20 a. m.] Método: GET | Ruta: /usuarios/orm
+[31-08-2026, 4:33:17 a. m.] Método: GET | Ruta: /api/usuarios-pedidos
+[31-08-2026, 4:33:18 a. m.] Método: GET | Ruta: /favicon.ico
+[31-08-2026, 4:36:43 a. m.] Método: GET | Ruta: /api/usuarios-pedidos
+[31-08-2026, 4:38:40 a. m.] Método: GET | Ruta: /api/usuarios-pedidos
