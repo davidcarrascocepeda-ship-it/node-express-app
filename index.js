@@ -16,6 +16,7 @@ const { sequelize } = require("./models");
 // 3. Importación de middlewares personalizados y rutas modulares
 const requestLogger = require("./middlewares/logger");
 const appRoutes = require("./routes/app.routes");
+const authRoutes = require("./routes/auth.routes");
 
 // 4. Inicialización de la aplicación Express
 const app = express();
@@ -34,6 +35,9 @@ app.use(requestLogger);
 // Servicio de archivos estáticos (sirve public/index.html en la raíz '/')
 app.use(express.static(path.join(__dirname, "public")));
 
+// Servicio estático para acceder a las imágenes subidas por Multer
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // ==========================================
 // SECCIÓN DE ENRUTAMIENTO MODULAR
 // ==========================================
@@ -41,11 +45,14 @@ app.use(express.static(path.join(__dirname, "public")));
 // Conexión del router principal (/status, /api/usuarios)
 app.use("/", appRoutes);
 
+// Rutas de autenticación y carga de archivos (/api/auth)
+app.use("/api/auth", authRoutes);
+
 // ==========================================
 // SINCRONIZACIÓN ORM Y ARRANQUE DEL SERVIDOR
 // ==========================================
 
-// Sincroniza modelos con la base de datos (crea la tabla pedidos si no existe)
+// Sincroniza modelos con la base de datos
 sequelize
   .sync()
   .then(() => {
