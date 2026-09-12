@@ -30,16 +30,20 @@ router.get("/:id", async (req, res) => {
 // 3. POST /api/orders (PROTEGIDA con JWT: Crear orden)
 router.post("/", verifyToken, async (req, res) => {
   try {
-    const { total, items } = req.body;
-    if (!total) {
-      return sendError(res, 400, "El campo total es obligatorio");
+    const { total, producto } = req.body;
+    if (!total || !producto) {
+      return sendError(
+        res,
+        400,
+        "Los campos total y producto son obligatorios",
+      );
     }
 
     const newOrder = await Order.create({
-      userId: req.user.id, // Asocia la orden directamente al usuario logueado en el JWT
+      usuario_id: req.user.id, // Asocia la orden directamente al usuario logueado en el JWT
+      producto,
       total,
-      items: items || [],
-      status: "pending",
+      estado: "completado",
     });
 
     return sendSuccess(res, 201, "Orden creada exitosamente", newOrder);

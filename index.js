@@ -17,6 +17,7 @@ const { sequelize } = require("./models");
 const requestLogger = require("./middlewares/logger");
 const appRoutes = require("./routes/app.routes");
 const authRoutes = require("./routes/auth.routes");
+const orderRoutes = require("./routes/orders.routes");
 
 // 4. Inicialización de la aplicación Express
 const app = express();
@@ -47,6 +48,9 @@ app.use("/", appRoutes);
 
 // Rutas de autenticación y carga de archivos (/api/auth)
 app.use("/api/auth", authRoutes);
+
+// Rutas de órdenes protegidas con JWT (/api/orders)
+app.use("/api/orders", orderRoutes);
 
 // ==========================================
 // SINCRONIZACIÓN ORM Y ARRANQUE DEL SERVIDOR
