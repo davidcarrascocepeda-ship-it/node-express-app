@@ -1,18 +1,37 @@
-# Node & Express Web App - API RESTful Backend
+# Node & Express Web App - API RESTful (Módulo 8 - ABP)
 
-Aplicación backend modular desarrollada con **Node.js**, **Express** y **Sequelize ORM**, diseñada con arquitectura desacoplada en capas (rutas, controladores, middlewares y utilidades). Incluye autenticación basada en **JWT**, control de accesos a rutas protegidas, subida de archivos estáticos con **Multer** y persistencia en base de datos relacional MySQL.
+API RESTful modular construida con Node.js, Express y Sequelize ORM para la gestión de usuarios, órdenes y carga de archivos, implementando seguridad stateless con JWT y persistencia en MySQL.
 
 ---
 
-## Tecnologías y Dependencias Principales
+## Stack Tecnológico
 
-- **Node.js** (v18+)
-- **Express.js**: Framework para la construcción de la API REST.
-- **Sequelize**: ORM para modelado y operaciones CRUD.
-- **MySQL2**: Driver de conexión a la base de datos relacional.
-- **JSON Web Token (jsonwebtoken)**: Firma, verificación y control de expiración de tokens.
-- **Bcryptjs**: Hashing seguro de contraseñas.
-- **Multer**: Procesamiento y filtrado de subida de archivos multipart/form-data.
+- **Entorno de Ejecución:** Node.js (v18+)
+- **Framework Web:** Express.js
+- **Base de Datos & ORM:** MySQL con Sequelize ORM
+- **Autenticación & Hashing:** JSON Web Tokens (JWT) y bcryptjs
+- **Manejo de Archivos:** Multer (almacenamiento en disco, filtros MIME y límite de 2MB)
+- **Persistencia en Archivos Planos:** Middleware nativo con `fs` para logs de peticiones
+
+---
+
+## Estructura del Proyecto
+
+````text
+node-express-app/
+├── config/             # Configuración de conexión Sequelize a MySQL
+├── controllers/        # Lógica de negocio (auth, orders, app)
+├── logs/               # Archivos planos de auditoría (log.txt)
+├── middlewares/        # verifyToken, logger, upload.middleware
+├── models/             # Esquemas y asociaciones Sequelize (User, Order)
+├── public/             # Archivos estáticos frontend
+├── routes/             # Enrutamiento modular (auth, orders, app)
+├── uploads/            # Archivos multimedia subidos por Multer
+├── utils/              # responseHelper.js (respuestas estandarizadas)
+├── .env                # Variables de entorno (excluido en .gitignore)
+├── .env.example        # Plantilla de variables de entorno
+├── index.js            # Punto de entrada principal
+└── package.json        # Dependencias y scripts
 
 ---
 
@@ -21,5 +40,5 @@ Aplicación backend modular desarrollada con **Node.js**, **Express** y **Sequel
 1. **Clonar el repositorio:**
    ```bash
    git clone https://github.com/davidcarrascocepeda-ship-it/node-express-app.git
-   cd Node & Express Web App
-   ```
+
+````

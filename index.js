@@ -8,7 +8,6 @@ require("dotenv").config();
 // 2. Importación de módulos y dependencias
 const express = require("express");
 const path = require("path");
-require("./config/db");
 
 // Importación de modelos y ORM
 const { sequelize } = require("./models");

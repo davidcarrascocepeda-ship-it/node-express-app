@@ -1,7 +1,7 @@
 {
   "name": "node-express-app",
   "version": "1.0.0",
-  "description": "Aplicación web backend con Node.js y Express - Módulo 6",
+  "description": "Aplicación web backend con Node.js y Express - Módulo 8 - ABP Integrador",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
