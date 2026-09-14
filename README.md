@@ -17,7 +17,7 @@ API RESTful modular construida con Node.js, Express y Sequelize ORM para la gest
 
 ## Estructura del Proyecto
 
-````text
+```text
 node-express-app/
 ├── config/             # Configuración de conexión Sequelize a MySQL
 ├── controllers/        # Lógica de negocio (auth, orders, app)
@@ -38,7 +38,7 @@ node-express-app/
 ## Instalación y Puesta en Marcha
 
 1. **Clonar el repositorio:**
-   ```bash
-   git clone https://github.com/davidcarrascocepeda-ship-it/node-express-app.git
+    git clone https://github.com/davidcarrascocepeda-ship-it/node-express-app.git
 
-````
+
+```
