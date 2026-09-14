@@ -3,4 +3,10 @@ node_modules/
 
 uploads/*
 !uploads/.gitkeep
-logs/*.txt
+
+logs/
+*.log
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
